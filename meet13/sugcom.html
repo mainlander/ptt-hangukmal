@@ -1,52 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<%@ page import="java.io.*" %>
-<%@ page import="java.net.*" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="java.util.*" %>
-<%@ page import="javax.naming.*" %>
-<%@ page import="javax.sql.*" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <%
     String[] motiveNames = { "", "主修/輔系", "偶像", "韓劇", "韓綜", 
         "韓樂", "文化", "歷史", "文學", "飲食", "語言學", "會日語", 
         "火星文", "好玩", "另一半", "母語", "其它" };
-    Connection conn;
-    try {
-        DataSource ds = (DataSource)new InitialContext().lookup("java:comp/env/jdbc/hangukmal");
-        conn = ds.getConnection();
-    }
-    catch (NamingException e) {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter erroutNaming = response.getWriter();
-        erroutNaming.println("<html><head><title></title></head><body>");
-        erroutNaming.println("<h1>Naming Error!</h1><p>Please check the JNDI database connection.</p></body></html>");
-        return;
-    }
-    catch (SQLException e) {
-        System.err.println(e.getMessage());
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter erroutSql = response.getWriter();
-        erroutSql.println("<html><head><title></title></head><body>");
-        erroutSql.println("<h1>SQL Error!</h1><p>Data source connection error.</p></body></html>");
-        return;
-    }
 %>
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>批踢踢韓國語板–第12次板聚報名結果</title>
+<title>批踢踢韓國語板–第13次板聚報名結果</title>
 <style type="text/css" media="all">
-	@import "style.css";
+	@import "/stylesheets/tyle.css";
 </style>
 </head>
 <body>
 <div id="container">
-<p class="title">台大批踢踢實業坊 韓國語板 <br/>第12次板聚報名名單</p>
+<p class="title">台大批踢踢實業坊 韓國語板 <br/>第13次板聚報名名單</p>
 
 <%
     if (request.getParameter("sn") == null) {
@@ -64,38 +32,6 @@
         <td>其它</td>
     </tr>
 
-<%
-    int sn = Integer.parseInt(request.getParameter("sn"));
-
-    PreparedStatement pstmt = conn.prepareStatement("SELECT ptt_id,suggest,other,location,transport,motive FROM meeting12 WHERE sn=?");
-    pstmt.setInt(1, sn);
-
-    ResultSet rs = pstmt.executeQuery();
-    while (rs.next()) {
-        String pttid = rs.getString(1);
-        String suggest = rs.getString(2);
-
-        if (suggest != null)
-            suggest = URLDecoder.decode(suggest, "UTF-8").replace("\n", "<br/>");
-        String other = rs.getString(3);
-        if (other != null)
-            other = URLDecoder.decode(other, "UTF-8").replace("\n", "<br/>");
-        String location = rs.getString(4);
-        if (location != null)
-            location = URLDecoder.decode(location, "UTF-8");
-        String transport = rs.getString(5);
-
-        String motive = rs.getString(6);
-        String[] mots = motive.split(";");
-        StringBuffer motiveSB = new StringBuffer();
-        for (String m : mots) {
-            int index = Integer.parseInt(m);
-            motiveSB.append(motiveNames[index]);
-            motiveSB.append("<br/>");
-        }
-        String motiveStr = motiveSB.toString();
-
-%>
     <tr class="row2">
         <td><%= pttid %></td>
         <td><%= location %></td>
@@ -104,15 +40,6 @@
         <td><%= suggest %></td>
         <td><%= other %></td>
     </tr>
-<%
-    }
-
-    if (pstmt != null)
-        pstmt.close();
-
-    if (conn != null)
-        conn.close();
-%>
 </table>
 </div>
 </body>
