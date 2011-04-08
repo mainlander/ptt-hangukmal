@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>批踢踢韓國語板–第13次板聚報名結果</title>
+<style type="text/css" media="all">
+	@import "/stylesheets/style.css";
+</style>
+<script language="JavaScript">
+function wopen(url, name, w, h) {
+    w += 32;
+    h += 96;
+    var win = window.open(url, name, 
+            'width=' + w + ', height=' + h + ', ' +
+            'location=no, menubar=no, ' +
+            'status=no, toolbar=no, scrollbars=no, resizable=no');
+    win.resizeTo(w, h);
+    win.focus();
+}
+</script>
+</head>
+<body>
+<p class="title">台大批踢踢實業坊 韓國語板 <br/>第13次板聚報名名單</p>
+
+        <p class="centertext">目前報名人數共 <span style="color:#FF0000;"><%= total %></span> 人</p>
+
+<table cellspacing="0">
+    <tr class="rowhead">
+        <td>PTT ID</td>
+        <td>姓名</td>
+        <td>性別</td>
+        <td>聯絡電話</td>
+        <td>E-Mail</td>
+        <td>MSN</td>
+        <td>人數</td>
+        <td>程度</td>
+        <td>更多</td>
+    </tr>
+    {% for item in items %}
+    <tr class="row1">
+        <td>{{ item.ptt_id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{% ifequal item.sex "m" %} 男 {% else %} 女 {% endifequal %}</td>
+        <td>{{ item.phone }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.msn }}</td>
+        <td>{{ item.person_count }}</td>
+        {% ifequal item.level 0 %}
+        <td>完全不會</td>
+        {% endifequal %}
+        {% ifequal item.level 1 %}
+        <td>初級</td>
+        {% endifequal %}
+        {% ifequal item.level 2 %}
+        <td>中級</td>
+        {% endifequal %}
+        {% ifequal item.level 3 %}
+        <td>高級</td>
+        {% endifequal %}
+        {% ifequal item.level 4 %}
+        <td>母語</td>
+        {% endifequal %}
+        <td>{{ level_str }}</td>
+        <td> sugcomLink </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p style="top:50px;text-align:center;position:relative">系統開發：albyu</p>
+
+</body>
+</html>
