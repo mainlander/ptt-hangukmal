@@ -17,7 +17,7 @@
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 
-from meet13 import Meet13ApplyPage, Meet13Add, Meet13ListPage
+from meet13 import *
 
 class MainHandler(webapp.RequestHandler):
     def get(self):
@@ -29,7 +29,8 @@ def main():
             ('/', MainHandler), 
             ('/meet13/apply', Meet13ApplyPage),
             ('/meet13/add', Meet13Add),
-            ('/meet13/list', Meet13ListPage)
+            ('/meet13/list', Meet13ListPage),
+            ('/meet13/confirm', Meet13ConfirmPage)
                                          ],
                                          debug=True)
     util.run_wsgi_app(application)

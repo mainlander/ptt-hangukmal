@@ -29,7 +29,10 @@ class Meet13Record(db.Model):
 
 class Meet13ApplyPage(webapp.RequestHandler):
     def get(self):
-        size = Meet13Record.all().count()
+        size = 0
+        items = Meet13Record.all()
+        for item in items:
+            size += item.person_count
         template_values = {
                             "size": size
                           }
@@ -82,14 +85,34 @@ class Meet13Add(webapp.RequestHandler):
 class Meet13ConfirmPage(webapp.RequestHandler):
     def get(self):
         record_hash = self.request.get("ident")
-
+        items = Meet13Record.all().filter("record_hash = ", record_hash)
+        template_values = {}
+        for item in items:
+            template_values["item"] = item
+            level_str = u"完全不會"
+            if item.level == 1:
+                level_str = u"初學"
+            elif item.level == 2:
+                level_str = u"中級"
+            elif item.level == 3:
+                level_str = u"高級"
+            elif item.level == 4:
+                level_str = u"母語"
+            template_values["level_str"] = level_str
+        path = os.path.join(os.path.dirname(__file__), "meet13", "confirm.html")
+        self.response.out.write(template.render(path, template_values))
 
 
 class Meet13ListPage(webapp.RequestHandler):
     def get(self):
         items = Meet13Record.all()
+        level_list = [ 0, 0, 0, 0, 0 ]
+        for item in items:
+            level_list[item.level] += 1
+        level_chart_str = "%d,%d,%d,%d,%d" % tuple(level_list)
         template_values = {
-                            "items": items
+                            "items": items,
+                            "level_chart_value": level_chart_str
                           }
         path = os.path.join(os.path.dirname(__file__), "meet13", "list.html")
         self.response.out.write(template.render(path, template_values))
