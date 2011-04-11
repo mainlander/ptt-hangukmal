@@ -58,7 +58,7 @@ class Meet13Add(webapp.RequestHandler):
         m.update(item.phone)
         m.update(time.strftime("%Y-%m-%d %H:%M:%S"))
         record_hash = m.hexdigest()
-        item.record_hash = record_hash
+        item.record_hash = "m13-" + record_hash
 
         item.put()
 
@@ -78,6 +78,12 @@ class Meet13Add(webapp.RequestHandler):
                           }
         path = os.path.join(os.path.dirname(__file__), "meet13", "confirm.html")
         self.response.out.write(template.render(path, template_values))
+
+class Meet13ConfirmPage(webapp.RequestHandler):
+    def get(self):
+        record_hash = self.request.get("ident")
+
+
 
 class Meet13ListPage(webapp.RequestHandler):
     def get(self):
