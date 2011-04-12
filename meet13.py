@@ -8,6 +8,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
 from google.appengine.ext.webapp import template
+from google.appengine.api import users
 
 class Meet13Record(db.Model):
     name = db.StringProperty()
@@ -29,6 +30,7 @@ class Meet13Record(db.Model):
     korean_inst_name = db.StringProperty()
     korean_inst_level = db.StringProperty()
     learn_hour = db.IntegerProperty()
+    begin_time = db.IntegerProperty()
     
 
 class Meet13ApplyPage(webapp.RequestHandler):
@@ -63,6 +65,7 @@ class Meet13Add(webapp.RequestHandler):
         item.korean_inst_name = self.request.get("inst_name")
         item.korean_inst_level = self.request.get("inst_level")
         item.learn_hour = int(self.request.get("thour"))
+        item.begin_time = int(self.request.get("btime"))
 
         m = hashlib.md5()
         m.update(item.ptt_id)
@@ -113,16 +116,39 @@ class Meet13ConfirmPage(webapp.RequestHandler):
 
 class Meet13ListPage(webapp.RequestHandler):
     def get(self):
-        items = Meet13Record.all()
-        level_list = [ 0, 0, 0, 0, 0 ]
-        for item in items:
-            level_list[item.level] += 1
-        level_chart_str = "%d,%d,%d,%d,%d" % tuple(level_list)
-        level_chart_max = "%d" % max(level_list)
-        template_values = {
-                            "items": items,
-                            "level_chart_max": level_chart_max,
-                            "level_chart_value": level_chart_str
-                          }
-        path = os.path.join(os.path.dirname(__file__), "meet13", "list.html")
-        self.response.out.write(template.render(path, template_values))
+        user = users.get_current_user()
+        if user:
+            if users.is_current_user_admin():
+                size = 0
+                items = Meet13Record.all()
+                level_list = [ 0, 0, 0, 0, 0 ]
+                btime_list = [ 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+                korea_list = [ 0, 0 ]
+                for item in items:
+                    level_list[item.level] += 1
+                    btime_list[item.begin_time] += 1
+                    size += item.person_count
+                    if item.korea_inst:
+                        korea_list[0] += 1
+                    else:
+                        korea_list[1] += 1
+                level_chart_str = "%d,%d,%d,%d,%d" % tuple(level_list)
+                level_chart_max = "%d" % max(level_list)
+                btime_chart_str = "%d,%d,%d,%d,%d,%d,%d,%d,%d" % tuple(btime_list)
+                btime_chart_max = "%d" % max(btime_list)
+                korea_inst_value = "%d,%d" % tuple(korea_list)
+                template_values = {
+                                    "items": items,
+                                    "size": size,
+                                    "level_chart_max": level_chart_max,
+                                    "level_chart_value": level_chart_str,
+                                    "btime_chart_max": btime_chart_max,
+                                    "btime_chart_value": btime_chart_str,
+                                    "korea_inst_value": korea_inst_value
+                                  }
+                path = os.path.join(os.path.dirname(__file__), "meet13", "list.html")
+                self.response.out.write(template.render(path, template_values))
+            else:
+                self.response.out.write("<html><body>You are not allowed to see it. Please login your GMail account as Administrator.</body></html>")
+        else:
+            self.redirect(users.create_login_url(self.request.uri))
