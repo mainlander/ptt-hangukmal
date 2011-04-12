@@ -25,6 +25,10 @@ class Meet13Record(db.Model):
     other = db.TextProperty()
     date = db.DateTimeProperty(auto_now_add=True)
     record_hash = db.StringProperty()
+    korea_inst = db.BooleanProperty()
+    korean_inst_name = db.StringProperty()
+    korean_inst_level = db.StringProperty()
+    learn_hour = db.IntegerProperty()
     
 
 class Meet13ApplyPage(webapp.RequestHandler):
@@ -55,6 +59,10 @@ class Meet13Add(webapp.RequestHandler):
         item.transport = self.request.get("transport")
         item.suggest = self.request.get("suggest")
         item.other = self.request.get("other")
+        item.korea_inst = True if self.request.get("korea_learn") == "1" else False
+        item.korean_inst_name = self.request.get("inst_name")
+        item.korean_inst_level = self.request.get("inst_level")
+        item.learn_hour = int(self.request.get("thour"))
 
         m = hashlib.md5()
         m.update(item.ptt_id)
@@ -110,8 +118,10 @@ class Meet13ListPage(webapp.RequestHandler):
         for item in items:
             level_list[item.level] += 1
         level_chart_str = "%d,%d,%d,%d,%d" % tuple(level_list)
+        level_chart_max = "%d" % max(level_list)
         template_values = {
                             "items": items,
+                            "level_chart_max": level_chart_max,
                             "level_chart_value": level_chart_str
                           }
         path = os.path.join(os.path.dirname(__file__), "meet13", "list.html")

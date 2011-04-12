@@ -26,6 +26,18 @@ function checkform( form )
 
     return true;
 }
+
+function showKoreaLearn()
+{
+    document.getElementById('korea_inst_block').style.display = 'inline';
+    document.getElementById('thour_block').style.display = 'none';
+}
+
+function showThourBlock()
+{
+    document.getElementById('korea_inst_block').style.display = 'none';
+    document.getElementById('thour_block').style.display = 'inline';
+}
 </script>
 </head>
 <body>
@@ -105,14 +117,23 @@ function checkform( form )
         <tr class="row2">
             <td><span class="alerttext">*</span>學習韓語時數：</td>
             <td>
-                <p>請選擇您用於學習韓語的總時數 (韓語課程、補習班、自學等)</p>
-                <input type="radio" name="thour" value="0" checked />0小時<br/>
-                <input type="radio" name="thour" value="1" />30小時以內<br/>
-                <input type="radio" name="thour" value="2" />30~60小時<br/>
-                <input type="radio" name="thour" value="3" />60~120小時<br/>
-                <input type="radio" name="thour" value="4" />120~180小時<br/>
-                <input type="radio" name="thour" value="5" />180~240小時<br/>
-                <input type="radio" name="thour" value="6" />240小時以上<br/>
+                <p>是否於韓國讀過語學堂：
+                <input type="radio" name="korea_learn" value="0" checked onClick="showThourBlock()" />否 &nbsp;&nbsp; <input type="radio" name="korea_learn" value="1" onClick="showKoreaLearn()" />是</p>
+                <div id="korea_inst_block" style="display:none;">
+                    <p>語學堂名稱：<input type="text" name="inst_name" /></p>
+                    <p>就讀最高級數：<input type="text" name="inst_level" /></p>
+                </div>
+                <div id="thour_block">
+                    <p>請選擇您用於學習韓語的總時數 (韓語課程、補習班、自學等)</p>
+                    <input type="radio" name="thour" value="0" checked />0小時<br/>
+                    <input type="radio" name="thour" value="1" />100小時以內<br/>
+                    <input type="radio" name="thour" value="2" />100～200小時<br/>
+                    <input type="radio" name="thour" value="3" />200～300小時<br/>
+                    <input type="radio" name="thour" value="4" />300～400小時<br/>
+                    <input type="radio" name="thour" value="5" />400～500小時<br/>
+                    <input type="radio" name="thour" value="6" />500～600小時<br/>
+                    <input type="radio" name="thour" value="7" />600小時以上<br/>
+                </div>
             </td>
         </tr>
         <tr class="row1">
