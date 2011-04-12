@@ -59,17 +59,22 @@ function wopen(url, name, w, h) {
         {% ifequal item.level 4 %}
         <td>母語</td>
         {% endifequal %}
-        <td> sugcomLink </td>
+        <td> <a href="/meet13/sugcom?record={{ item.record_hash }}">詳細資料</a> </td>
     </tr>
     {% endfor %}
 </table>
 
-<p style="text-align:center;"><img src="http://chart.apis.google.com/chart?chf=bg,s,D9D3D4&chxl=1:|%E5%AE%8C%E5%85%A8%E4%B8%8D%E6%9C%83|%E5%88%9D%E5%AD%B8|%E4%B8%AD%E7%B4%9A|%E9%AB%98%E7%B4%9A|%E6%AF%8D%E8%AA%9E&chxr=0,0,{{ level_chart_max }}&chxs=0,000000,16.5,0,l,000000|1,000000,16.5,0,l,000000&chxt=y,x&chbh=a,10,10&chs=460x325&cht=bvg&chco=008000&chds=0,{{ level_chart_max }}&chd=t:{{ level_chart_value }}&chma=0,0,15&chtt=%E9%9F%93%E8%AA%9E%E7%A8%8B%E5%BA%A6&chts=000000,18.5" width="460" height="325" /></p>
+<p></p>
 
-<p style="text-align:center;"><img src="http://chart.apis.google.com/chart?chf=bg,s,D9D3D4&chxl=1:|%E7%84%A1|1%E5%80%8B%E6%9C%88%E4%BB%A5%E5%85%A7|1%EF%BD%9E3%E5%80%8B%E6%9C%88|3%EF%BD%9E6%E5%80%8B%E6%9C%88|%E5%8D%8A%EF%BD%9E%E4%B8%80%E5%B9%B4|%E4%B8%80%EF%BD%9E%E4%B8%89%E5%B9%B4|%E4%B8%89%EF%BD%9E%E4%BA%94%E5%B9%B4|%E4%BA%94%EF%BD%9E%E5%8D%81%E5%B9%B4|%E5%8D%81%E5%B9%B4%E4%BB%A5%E4%B8%8A&chxr=0,0,{{ btime_chart_max }}&chxs=0,000000,11.5,0,l,000000|1,000000,11.5,0,l,000000&chxt=y,x&chbh=a,10,15&chs=550x325&cht=bvg&chds=0,{{ btime_chart_max }}&chd=t:{{ btime_chart_value }}&chtt=%E6%8E%A5%E8%A7%B8%E9%9F%93%E8%AA%9E%E6%99%82%E9%96%93&chts=000000,17.5" width="550" height="325" /></p>
+<p style="text-align:center;"><img src="http://chart.apis.google.com/chart?chf=bg,s,D9D3D4&chxl=1:|%E5%AE%8C%E5%85%A8%E4%B8%8D%E6%9C%83|%E5%88%9D%E5%AD%B8|%E4%B8%AD%E7%B4%9A|%E9%AB%98%E7%B4%9A|%E6%AF%8D%E8%AA%9E&chxr=0,0,{{ level_chart_max }}&chxs=0,000000,16.5,0,l,000000|1,000000,16.5,0,l,000000&chxt=y,x&chbh=a,10,10&chs=460x325&cht=bvg&chco=008000&chds=0,{{ level_chart_max }}&chd=t:{{ level_chart_value }}&chma=0,0,15&chtt=%E9%9F%93%E8%AA%9E%E7%A8%8B%E5%BA%A6&chts=000000,18.5" width="460" height="325" />
+
+<img src="http://chart.apis.google.com/chart?chf=bg,s,D9D3D4&chxl=1:|%E7%84%A1|1%E5%80%8B%E6%9C%88%E4%BB%A5%E5%85%A7|1%EF%BD%9E3%E5%80%8B%E6%9C%88|3%EF%BD%9E6%E5%80%8B%E6%9C%88|%E5%8D%8A%EF%BD%9E%E4%B8%80%E5%B9%B4|%E4%B8%80%EF%BD%9E%E4%B8%89%E5%B9%B4|%E4%B8%89%EF%BD%9E%E4%BA%94%E5%B9%B4|%E4%BA%94%EF%BD%9E%E5%8D%81%E5%B9%B4|%E5%8D%81%E5%B9%B4%E4%BB%A5%E4%B8%8A&chxr=0,0,{{ btime_chart_max }}&chxs=0,000000,11.5,0,l,000000|1,000000,11.5,0,l,000000&chxt=y,x&chbh=a,10,15&chs=550x325&cht=bvg&chds=0,{{ btime_chart_max }}&chd=t:{{ btime_chart_value }}&chtt=%E6%8E%A5%E8%A7%B8%E9%9F%93%E8%AA%9E%E6%99%82%E9%96%93&chts=000000,17.5" width="550" height="325" /></p>
 
 
-<p style="text-align:center;"><img src="http://chart.apis.google.com/chart?chf=bg,s,D9D3D4&chxs=0,000000,14.5&chxt=x&chs=360x225&cht=p3&chco=FF9900|FFFF88&chd=t:{{ korea_inst_value }}&chl=%E6%98%AF|%E5%90%A6&chtt=%E8%AE%80%E9%81%8E%E9%9F%93%E5%9C%8B%E8%AA%9E%E5%AD%B8%E5%A0%82&chts=000000,18.5" width="360" height="225" /></p>
+<p style="text-align:center;"><img src="http://chart.apis.google.com/chart?chf=bg,s,D9D3D4&chxs=0,000000,14.5&chxt=x&chs=560x325&cht=p3&chco=FF9900|FFFF88&chd=t:{{ korea_inst_value }}&chl=%E6%98%AF|%E5%90%A6&chtt=%E8%AE%80%E9%81%8E%E9%9F%93%E5%9C%8B%E8%AA%9E%E5%AD%B8%E5%A0%82&chts=000000,18.5" width="560" height="325" />
+
+<img src="http://chart.apis.google.com/chart?chf=bg,s,D9D3D4&chxl=1:|0|100%E4%BB%A5%E4%B8%8B|100~200|200~300|300~400|400~500|500~600|600%E4%BB%A5%E4%B8%8A&chxr=0,0,{{ thour_chart_max }}&chxs=0,000000,12.5,-0.167,l,000000|1,000000,12.5,0,l,000000&chxt=y,x&chbh=a,10,15&chs=460x325&cht=bvg&chco=76A4FB&chds=0,{{ thour_chart_max }}&chd=t:{{ thour_chart_value }}&chma=|0,2&chtt=%E9%9F%93%E8%AA%9E%E5%AD%B8%E7%BF%92%E6%99%82%E6%95%B8&chts=000000,20.167" width="460" height="325" />
+</p>
 
 <p style="top:50px;text-align:center;position:relative">系統開發：albyu</p>
 
