@@ -86,12 +86,13 @@ class Meet13Add(webapp.RequestHandler):
         elif item.level == 4:
             level_str = u"母語"
 
-        template_values = {
-                            "item": item,
-                            "level_str": level_str
-                          }
-        path = os.path.join(os.path.dirname(__file__), "meet13", "confirm.html")
-        self.response.out.write(template.render(path, template_values))
+#        template_values = {
+#                            "item": item,
+#                            "level_str": level_str
+#                          }
+        self.redirect("/meet13/confirm?ident=" + item.record_hash)
+#        path = os.path.join(os.path.dirname(__file__), "meet13", "confirm.html")
+#        self.response.out.write(template.render(path, template_values))
 
 class Meet13ConfirmPage(webapp.RequestHandler):
     def get(self):
@@ -191,13 +192,13 @@ class Meet13SugcomPage(webapp.RequestHandler):
                     sugget = item.suggest
                     other = item.other
                     motive = ",".join(item.motive)
+                    btime = btime_names[item.begin_time]
                     if item.korea_inst:
                         korea_inst = u"是"
                         inst_name = item.korean_inst_name
                         inst_level = item.korean_inst_level
                     else:
                         korea_inst = u"否"
-                        btime = btime_names[item.begin_time]
                         thour = thour_names[item.learn_hour]
                 template_values = {
                             "ptt_id": ptt_id,
