@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>批踢踢韓國語板–第14次板聚報名結果</title>
+<style type="text/css" media="all">
+	@import "/stylesheets/style.css";
+</style>
+</head>
+<body>
+<div id="container">
+
+<div id="header">
+<img src="/images/banner.png">
+</div>
+    <p style="font-weight:bold;text-size:120%;color:#FF0000;">報名成功</p>
+    <p>感謝您的報名！您的報名代碼為 {{ item.record_hash }} <br/> 日後您可以此報名代碼查詢您的報名內容</p>
+    <p>請記得務必於2011年7月17日下午1點準時前往參加板聚喔！</p>
+    <p>欲詳細了解本次板聚相關內容及地點<a href="http://sites.google.com/a/albyu.co.cc/hangukmal/meeting/thirteenth">請按這裡</a></p>
+
+<p>以下為您的報名資料</p>
+<table cellspacing="0">
+    <tr class="row1">
+        <td>PTT帳號：</td>
+        <td>{{ item.ptt_id }}</td>
+    </tr>
+    <tr class="row2">
+        <td>姓名：</td>
+        <td>{{ item.name }}</td>
+    </tr>
+    <tr class="row1">
+        <td>性別：</td>
+        <td>{% ifequal item.sex "m" %} 男 {% else %} 女 {% endifequal %}</td>
+    </tr>
+    <tr class="row2">
+        <td>聯絡電話：</td>
+        <td>{{ item.phone }}</td>
+    </tr>
+    <tr class="row1">
+        <td>E-Mail：</td>
+        <td>{{ item.email }}</td>
+    </tr>
+    <tr class="row2">
+        <td>MSN：</td>
+        <td>{{ item.msn }}</td>
+    </tr>
+    <tr class="row1">
+        <td>韓語程度：</td>
+        <td>{{ level_str }}</td>
+    </tr>
+    <tr class="row2">
+        <td>參加人數：</td>
+        <td>{{ item.person_count }}</td>
+    </tr>
+    <tr class="row1">
+        <td>居住地點：</td>
+        <td>{{ item.location }}</td>
+    </tr>
+    <tr class="row2">
+        <td>建議：</td>
+        <td>{{ item.suggest }}</td>
+    </tr>
+    <tr class="row1">
+        <td>其它：</td>
+        <td>{{ item.other }}</td>
+    </tr>
+</table>
+
+<p style="top:50px;text-align:center;position:relative">系統開發：albyu</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>批踢踢韓國語板–第14次板聚報名頁</title>
+<style type="text/css" media="all">
+	@import "/stylesheets/style.css";
+</style>
+<script language="JavaScript" type="text/javascript">
+function checkform( form )
+{
+    if (form.pttid.value == "") {
+        alert("PTT帳號不可空白");
+        form.pttid.focus();
+        return false;
+    }
+    else if (form.name.value == "") {
+        alert("姓名欄位不可空白");
+        form.name.focus();
+        return false;
+    }
+    else if (form.phone.value == "") {
+        alert("聯絡電話不可空白");
+        form.phone.focus();
+        return false;
+    }
+
+    return true;
+}
+
+function showKoreaLearn()
+{
+    document.getElementById('korea_inst_block').style.display = 'inline';
+    document.getElementById('thour_block').style.display = 'none';
+}
+
+function showThourBlock()
+{
+    document.getElementById('korea_inst_block').style.display = 'none';
+    document.getElementById('thour_block').style.display = 'inline';
+}
+</script>
+</head>
+<body>
+<div id="container">
+<div id="header">
+<img src="/images/banner.png">
+</div>
+<p class="centertext">目前已有 <span style="color:#FF0000;">{{ size }}</span> 人報名</p>
+
+
+<p class="tabletitle">第14次板聚報名表</p>
+<p>標明<span class="alerttext">*</span>者為必填之欄位</p>
+<form action="/meet13/add" method="POST" onsubmit="return checkform(this);">
+    <table cellspacing="0">
+        <tr class="row1">
+            <td><span class="alerttext">*</span>PTT帳號：</td>
+            <td><input type="text" name="pttid" /> 
+            (請務必確認ID是否正確，板聚相關資訊將會以PTT站內信通知)</td>
+        </tr>
+        <tr class="row2">
+            <td><span class="alerttext">*</span>姓名：</td>
+            <td><input type="text" name="name" /></td>
+        </tr>
+        <tr class="row1">
+            <td><span class="alerttext">*</span>性別：</td>
+            <td>
+                <input type="radio" name="sex" value="m" checked />男                 <input type="radio" name="sex" value="f" />女
+            </td>
+        </tr>
+        <tr class="row2">
+            <td><span class="alerttext">*</span>聯絡電話：</td>
+            <td><input type="text" name="phone" /></td>
+        </tr>
+        <tr class="row1">
+            <td>E-Mail：</td>
+            <td><input type="text" name="email" /></td>
+        </tr>
+        <tr class="row2">
+            <td>MSN：</td>
+            <td><input type="text" name="msn" /></td>
+        </tr>
+        <tr class="row1">
+            <td><span class="alerttext">*</span>參加人數：</td>
+            <td>
+                <select name="people">
+                    <option value="1">1人</option>
+                    <option value="2">2人</option>
+                    <option value="3">3人</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="row2">
+            <td><span class="alerttext">*</span>韓語程度：</td>
+            <td>
+                <input type="radio" name="level" value="0" />完全不會<br/>
+                <input type="radio" name="level" value="1" checked />初學<br/>
+                <input type="radio" name="level" value="2" />中級<br/>
+                <input type="radio" name="level" value="3" />高級<br/>
+                <input type="radio" name="level" value="4" />母語<br/>
+            </td>
+        </tr>
+        <tr class="row1">
+            <td><span class="alerttext">*</span>接觸韓語時間：</td>
+            <td>
+                <p>請選擇您開始接觸韓語以來至今已過多久</p>
+                <input type="radio" name="btime" value="0" checked />無<br/>
+                <input type="radio" name="btime" value="1" />1個月以內<br/>
+                <input type="radio" name="btime" value="2" />1～3個月<br/>
+                <input type="radio" name="btime" value="3" />3～6個月<br/>
+                <input type="radio" name="btime" value="4" />半年～一年<br/>
+                <input type="radio" name="btime" value="5" />一～三年<br/>
+                <input type="radio" name="btime" value="6" />三～五年<br/>
+                <input type="radio" name="btime" value="7" />五～十年<br/>
+                <input type="radio" name="btime" value="8" />十年以上<br/>
+            </td>
+        </tr>
+        <tr class="row2">
+            <td><span class="alerttext">*</span>學習韓語時數：</td>
+            <td>
+                <p>是否於韓國讀過語學堂：
+                <input type="radio" name="korea_learn" value="0" checked onClick="showThourBlock()" />否 &nbsp;&nbsp; <input type="radio" name="korea_learn" value="1" onClick="showKoreaLearn()" />是</p>
+                <div id="korea_inst_block" style="display:none;">
+                    <p>語學堂名稱：<input type="text" name="inst_name" /></p>
+                    <p>就讀最高級數：<input type="text" name="inst_level" /></p>
+                </div>
+                <div id="thour_block">
+                    <p>請選擇您用於學習韓語的總時數 (韓語課程、補習班、自學等)</p>
+                    <input type="radio" name="thour" value="0" checked />0小時<br/>
+                    <input type="radio" name="thour" value="1" />100小時以內<br/>
+                    <input type="radio" name="thour" value="2" />100～200小時<br/>
+                    <input type="radio" name="thour" value="3" />200～300小時<br/>
+                    <input type="radio" name="thour" value="4" />300～400小時<br/>
+                    <input type="radio" name="thour" value="5" />400～500小時<br/>
+                    <input type="radio" name="thour" value="6" />500～600小時<br/>
+                    <input type="radio" name="thour" value="7" />600小時以上<br/>
+                </div>
+            </td>
+        </tr>
+        <tr class="row1">
+            <td>學韓語的動機：</td>
+            <td>
+                <table>
+                    <tr>
+                        <td><input type="checkbox" name="motive" value="主修/輔系" />大學主修/輔系</td>
+                        <td><input type="checkbox" name="motive" value="偶像" />偶像</td>
+                        <td><input type="checkbox" name="motive" value="韓劇" />韓劇</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="motive" value="韓綜" />韓綜</td>
+                        <td><input type="checkbox" name="motive" value="韓樂" />韓樂</td>
+                        <td><input type="checkbox" name="motive" value="文化" />韓國文化</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="motive" value="歷史" />韓國歷史</td>
+                        <td><input type="checkbox" name="motive" value="文學" />韓國文學</td>
+                        <td><input type="checkbox" name="motive" value="飲食" />韓國飲食</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="motive" value="語言學" />語言學</td>
+                        <td><input type="checkbox" name="motive" value="會日語" />已會日語，順便學習</td>
+                        <td><input type="checkbox" name="motive" value="火星文" />看懂圈圈叉叉火星文</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="motive" value="好玩" />純粹好玩</td>
+                        <td><input type="checkbox" name="motive" value="另一半" />另一半是韓國人(華僑)</td>
+                        <td><input type="checkbox" name="motive" value="母語" />韓語是我的母語</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="motive" value="其它" />其它</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr class="row2">
+            <td>居住地區</td>
+            <td>
+                <select name="location">
+                    <option value="">請選擇</option>
+                    <option value="中正/萬華">中正、萬華</option>
+                    <option value="大同/中山">大同、中山</option>
+                    <option value="大安/信義">大安、信義</option>
+                    <option value="松山">松山</option>
+                    <option value="內湖">內湖</option>
+                    <option value="士林/北投">士林、北投</option>
+                    <option value="文山/深坑">文山、深坑</option>
+                    <option value="南港/汐止">南港、汐止</option>
+                    <option value="永和/中和">永和、中和</option>
+                    <option value="板橋/新莊">板橋、新莊</option>
+                    <option value="新店/烏來">新店、烏來</option>
+                    <option value="三重/蘆洲">三重、蘆洲</option>
+                    <option value="土城/樹林">土城、樹林</option>
+                    <option value="三峽/鶯歌">三峽、鶯歌</option>
+                    <option value="林口/泰山">林口、泰山</option>
+                    <option value="淡水/八里">淡水、八里</option>
+                    <option value="三芝/石門">三芝、石門</option>
+                    <option value="金山/萬里">金山、萬里</option>
+                    <option value="基隆/瑞芳">基隆、瑞芳</option>
+                    <option value="石碇/坪林">石碇、坪林</option>
+                    <option value="平溪/雙溪/貢竂">平溪、雙溪、貢寮</option>
+                    <option value="宜蘭">宜蘭地區</option>
+                    <option value="桃園">桃園地區</option>
+                    <option value="新竹">新竹地區</option>
+                    <option value="新竹以南">新竹以南</option>
+                </select> 
+            </td>
+        </tr>
+        <tr class="row1">
+           <td>參加板聚交通工具</td> 
+           <td>
+                <select name="transport">
+                    <option value="">請選擇</option>
+                    <option value="mass">大眾運輸</option>
+                    <option value="motor">機車</option>
+                    <option value="car">汽車</option>
+                    <option value="bike">自行車</option>
+                    <option value="walk">步行</option>
+                </select>
+           </td>
+        </tr>
+        <tr class="row2">
+            <td>對本次板聚建議：</td>
+            <td>
+                <textarea rows="5" cols="50" wrap="physical" name="suggest"></textarea>
+            </td>
+        </tr>
+        <tr class="row1">
+            <td>其它想說的話：</td>
+            <td>
+                <textarea rows="5" cols="50" wrap="physical" name="other"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="我要報名" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+<div style="border-width:1px;background:#BDF0BD;width:300px;position:relative;top:50px;" align="right">
+<form action="/meet13/confirm" method="GET">
+<p>查詢我先前的報名內容</p>
+<p>報名代碼：<input type="text" name="ident"/><input type="submit" value="查詢"/></p>
+</form>
+</div>
+
+<p style="top:50px;text-align:center;position:relative">系統開發：albyu</p>
+
+</div>
+</body>
+</html>
