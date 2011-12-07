@@ -72,7 +72,7 @@ class Meet15Add(webapp.RequestHandler):
         m.update(item.phone)
         m.update(time.strftime("%Y-%m-%d %H:%M:%S"))
         record_hash = m.hexdigest()
-        item.record_hash = "m14-" + record_hash
+        item.record_hash = "m15-" + record_hash
 
         item.put()
 
