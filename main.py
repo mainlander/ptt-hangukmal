@@ -37,7 +37,12 @@ def main():
             ('/meet14/add', Meet14Add),
             ('/meet14/list', Meet14ListPage),
             ('/meet14/confirm', Meet14ConfirmPage),
-            ('/meet14/sugcom', Meet14SugcomPage)
+            ('/meet14/sugcom', Meet14SugcomPage),
+            ('/meet15/apply', Meet15ApplyPage),
+            ('/meet15/add', Meet15Add),
+            ('/meet15/list', Meet15ListPage),
+            ('/meet15/confirm', Meet15ConfirmPage),
+            ('/meet15/sugcom', Meet15SugcomPage)
                                          ],
                                          debug=True)
     util.run_wsgi_app(application)
